@@ -1,1 +1,46 @@
+// C++ code
+//
+
+const byte LED_PIN = 13;
+const byte TEMP_SENS = A0;
+
+
+
+void setup()
+{
+  pinMode(LED_PIN, OUTPUT);
+  pinMode(TEMP_SENS, INPUT);
+      
+  Serial.begin(9600);
+
+  
+
+
+}
+
+void loop()
+{ 
+  float TEMP =  ((analogRead(TEMP_SENS) * (5.0/1024))-0.5)/0.01;
+  Serial.print(TEMP);
+  Serial.println(" Celcius");
+  CheckTemp(TEMP);
+  delay(1000);
+
+}
+
+
+void CheckTemp(float temp)
+{
+  if(temp >=40)
+  {
+
+    Serial.println("Hot!! LED ON");
+    digitalWrite(LED_PIN, HIGH);
+  }
+  else
+  {
+    Serial.println("normal..!! LED off");
+    digitalWrite(LED_PIN, LOW);
+	}
+}
 
